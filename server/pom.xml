@@ -83,7 +83,7 @@
                     <assembleDirectory>../distribution</assembleDirectory>
                     <programs>
                         <program>
-                            <mainClass>com.alibaba.fescar.server.Server</mainClass>
+                            <mainClass>io.seata.server.Server</mainClass>
                             <name>fescar-server</name>
                             <jvmSettings>
                                 <extraArguments>
