@@ -26,11 +26,14 @@ jobs:
     - name: Set up ENV
       run:  if [ "${{ matrix.java }}" == "8" ]; then
               export IMAGE_NAME="openjdk:8u212-jre-alpine";
+               echo "zzz${IMAGE_NAME}xxx";
+              echo zzz${IMAGE_NAME}xxx;
             elif [ "${{ matrix.java }}" == "11" ]; then
               export IMAGE_NAME="openjdk:11-jre-stretch";
+               echo "zzz${IMAGE_NAME}xxx";
+              echo zzz${IMAGE_NAME}xxx;
             fi
-            echo "zzz${IMAGE_NAME}xxx"
-            echo zzz${IMAGE_NAME}xxx
+           
     - name: Build with Maven
       run: echo "zzz${IMAGE_NAME}xxx"  && mvn -v
     - name: Codecov
