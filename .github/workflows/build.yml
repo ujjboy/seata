@@ -26,13 +26,35 @@ jobs:
     - name: Set up ENV
       # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
       run:  if [ "${{ matrix.java }}" == "8" ]; then
-              echo "IMAGE_NAME=8u212-jre-alpine" >> $GITHUB_ENV;
+                echo "IMAGE_NAME=openjdk:8u212-jre-alpine" >> $GITHUB_ENV;
             elif [ "${{ matrix.java }}" == "11" ]; then
-              echo "IMAGE_NAME=11-jre-stretch" >> $GITHUB_ENV;
+                echo "IMAGE_NAME=openjdk:11-jre-stretch" >> $GITHUB_ENV;
             fi
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    - name: Dump job context
+      env:
+        JOB_CONTEXT: ${{ toJson(job) }}
+      run: echo "$JOB_CONTEXT"
+    - name: Dump steps context
+      env:
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+      run: echo "$STEPS_CONTEXT"
+    - name: Dump runner context
+      env:
+        RUNNER_CONTEXT: ${{ toJson(runner) }}
+      run: echo "$RUNNER_CONTEXT"
+    - name: Dump strategy context
+      env:
+        STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+      run: echo "$STRATEGY_CONTEXT"
+    - name: Dump matrix context
+      env:
+        MATRIX_CONTEXT: ${{ toJson(matrix) }}
+      run: echo "$MATRIX_CONTEXT"
     - name: Build with Maven
-      run: echo "zzz${GITHUB_REF}xxx" 
-         && echo gb${{github.base_ref}}
-         && echo gb${{github.ref}} 
+      run: echo "IMAGE_NAME=${IMAGE_NAME}" 
     - name: Codecov
       uses: codecov/codecov-action@v1
