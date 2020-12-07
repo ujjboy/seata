@@ -26,8 +26,7 @@ jobs:
     - name: Set up ENV
       run:  if [ "${{ matrix.java }}" == "8" ]; then
               export IMAGE_NAME="openjdk:8u212-jre-alpine";
-            fi
-            if [ "${{ matrix.java }}" == "11" ]; then
+            else if [ "${{ matrix.java }}" == "11" ]; then
               export IMAGE_NAME="openjdk:11-jre-stretch";
             fi
     - name: Build with Maven
