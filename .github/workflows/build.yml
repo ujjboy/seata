@@ -31,7 +31,6 @@ jobs:
             fi
             echo "zzz${IMAGE_NAME}xxx"
             echo zzz${IMAGE_NAME}xxx
-            echo zzz${{IMAGE_NAME}}xxx
     - name: Build with Maven
       run: echo "zzz${IMAGE_NAME}xxx"  && mvn -v
     - name: Codecov
