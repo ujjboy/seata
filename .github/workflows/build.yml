@@ -23,7 +23,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: ${{ matrix.java }}
+    - name: Set up ENV
+      run:  if [ "${{ matrix.java }}" == "8" ]; then
+              export IMAGE_NAME="openjdk:8u212-jre-alpine";
+            fi
+            if [ "${{ matrix.java }}" == "11" ]; then
+              export IMAGE_NAME="openjdk:11-jre-stretch";
+            fi
     - name: Build with Maven
-      run: mvn clean install -DskipTests=false -Dcheckstyle.skip=false -Dlicense.skip=false -P image -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn;
+      run: echo "${IMAGE_NAME}"  && mvn -v
     - name: Codecov
       uses: codecov/codecov-action@v1
