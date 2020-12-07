@@ -56,5 +56,7 @@ jobs:
       run: echo "$MATRIX_CONTEXT"
     - name: Build with Maven
       run: echo "IMAGE_NAME=${IMAGE_NAME}" 
+       && echo "${{github.ref}}"
+       && echo "${{github.event_name}}"
     - name: Codecov
       uses: codecov/codecov-action@v1
